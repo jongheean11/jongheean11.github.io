@@ -9,10 +9,8 @@ Built as a static HTML/CSS site (design inspired by [Jon Barron](https://jonbarr
 - `index.html` — main page (bio, news, publications, experience, patents, education)
 - `stylesheet.css` — all styles
 - `files/CV_JamesHKim.pdf` — CV
-- `files/photo.svg` — profile photo placeholder
+- `files/photo.jpg` — profile photo (white studio background blended into a pastel-blue
+  gradient; regenerate with a multiply blend if the photo changes)
+- `files/pub/` — publication thumbnails
 
-## Replacing the profile photo
-
-Put your photo at `files/photo.jpg` and change the `<img src="files/photo.svg">` line in
-`index.html` to `files/photo.jpg`. A square (or portrait) photo works best — it is cropped
-to a 180×180 circle.
+The photo is displayed as a 180×180 circle (`border-radius: 50%` in `stylesheet.css`).
