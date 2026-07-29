@@ -178,7 +178,8 @@ section h2 {
   width: 200px;
 }
 
-.pub-thumb img {
+.pub-thumb img,
+.pub-thumb video {
   width: 100%;
   height: auto;
   display: block;
@@ -334,6 +335,13 @@ section h2 {
 .item-venue {
   font-size: 13px;
   color: #777;
+}
+
+.item-stack {
+  font-size: 12.5px;
+  color: #9aa3af;
+  margin-top: 4px;
+  margin-bottom: 6px;
 }
 
 /* ---- Footer ---- */
