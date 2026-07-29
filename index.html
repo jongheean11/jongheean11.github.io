@@ -83,10 +83,49 @@
         <span>Presented <a href="https://diffbmp.com/">DiffBMP</a> at <strong>CVPR 2026</strong>.</span>
       </li>
       <li>
-        <span class="news-date">Mar 2026</span>
+        <span class="news-date">Mar 2025</span>
         <span>Started my M.S. in the <strong>Interdisciplinary Program in Artificial Intelligence (IPAI)</strong> at Seoul National University.</span>
       </li>
+      <div id="news-extra">
+        <li>
+          <span class="news-date">Mar 2024</span>
+          <span>Filed a patent on increasing the resolution of <strong>digital bokeh images</strong> (US20250272806, EP4604568A4).</span>
+        </li>
+        <li>
+          <span class="news-date">Mar 2023</span>
+          <span>Filed a patent on an adaptive camera pipeline switching between <strong>stereo and AI-based bokeh</strong> (US2024/0314429, KR10-2794879).</span>
+        </li>
+        <li>
+          <span class="news-date">Nov 2022</span>
+          <span>Patent on <strong>category-aware visual item retrieval</strong> granted (US11500918B2, KR10-2734142).</span>
+        </li>
+        <li>
+          <span class="news-date">Feb 2022</span>
+          <span>Patent on <strong>multi-camera video bokeh</strong> granted (US11258962B2, KR10-2835449).</span>
+        </li>
+        <li>
+          <span class="news-date">Jan 2019</span>
+          <span>Joined the <strong>Visual AI Group</strong> at Samsung MX — leading end-to-end development of <strong>Portrait Video</strong>, deployed from the Galaxy S10 5G to the Galaxy S25.</span>
+        </li>
+        <li>
+          <span class="news-date">Nov 2018</span>
+          <span>One-Shot Item Search with Multimodal Data preprint released on <a href="https://arxiv.org/abs/1811.10969"><strong>arXiv</strong></a>.</span>
+        </li>
+        <li>
+          <span class="news-date">Aug 2017</span>
+          <span>Moved to the <strong>Visual S/W R&amp;D Group</strong> at Samsung MX to work on <strong>Bixby Vision</strong>, an AI-based visual search system.</span>
+        </li>
+        <li>
+          <span class="news-date">Jul 2016</span>
+          <span>Joined <strong>Samsung Electronics (MX)</strong>.</span>
+        </li>
+        <li>
+          <span class="news-date">Feb 2016</span>
+          <span>Received my B.S. in Computer Science &amp; Engineering from <strong>Hongik University</strong>.</span>
+        </li>
+      </div>
     </ul>
+    <button id="show-more-btn" onclick="toggleNews()">&#9662; Show more</button>
   </section>
 
   <!-- Selected Publications -->
@@ -313,7 +352,7 @@
     <ul class="item-list">
       <li>
         <p class="item-title">Seoul National University</p>
-        <p class="item-meta">M.S. in Interdisciplinary Program in Artificial Intelligence (IPAI) · Mar 2026 – Present</p>
+        <p class="item-meta">M.S. in Interdisciplinary Program in Artificial Intelligence (IPAI) · Mar 2025 – Present</p>
       </li>
       <li>
         <p class="item-title">Hongik University</p>
@@ -327,6 +366,16 @@
   </footer>
 
 </div>
+
+<script>
+function toggleNews() {
+  var extra = document.getElementById('news-extra');
+  var btn = document.getElementById('show-more-btn');
+  var open = extra.style.display === 'block';
+  extra.style.display = open ? 'none' : 'block';
+  btn.innerHTML = open ? '&#9662; Show more' : '&#9652; Show less';
+}
+</script>
 
 </body>
 </html>
