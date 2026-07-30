@@ -1,0 +1,40 @@
+name: Record visitor counts
+
+on:
+  schedule:
+    - cron: '0 21 * * *'   # daily 06:00 KST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch GoatCounter totals and append to CSV
+        run: |
+          get() {
+            curl -sf "https://jongheean11.goatcounter.com/counter/$1.json" \
+              | jq -r '.count' | sed 's/[^0-9]//g'
+          }
+          home=$(get "/" || true)
+          if [ -z "$home" ]; then
+            echo "GoatCounter not reachable (site not registered yet?); skipping."
+            exit 0
+          fi
+          pubs=$(get "/publications.html" || true)
+          projs=$(get "/projects.html" || true)
+          mkdir -p traffic
+          [ -f traffic/visitors.csv ] || echo "date,home,publications,projects" > traffic/visitors.csv
+          echo "$(date -u +%F),${home},${pubs},${projs}" >> traffic/visitors.csv
+          cat traffic/visitors.csv
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add traffic/visitors.csv
+          git diff --cached --quiet || { git commit -m "Record visitor counts"; git push; }
