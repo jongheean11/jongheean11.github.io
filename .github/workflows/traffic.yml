@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Fetch GoatCounter totals and append to CSV
+      - name: Record counts and commit if changed
         run: |
           get() {
             curl -sf "https://jongheean11.goatcounter.com/counter/$1.json" \
@@ -22,7 +22,7 @@ jobs:
           }
           home=$(get "/" || true)
           if [ -z "$home" ]; then
-            echo "GoatCounter not reachable (site not registered yet?); skipping."
+            echo "GoatCounter not reachable (site not registered or counter disabled); skipping."
             exit 0
           fi
           pubs=$(get "/publications.html" || true)
@@ -37,10 +37,8 @@ jobs:
           fi
           echo "$(TZ=Asia/Seoul date +'%F %H:%M'),${new}" >> traffic/visitors.csv
           tail -n 5 traffic/visitors.csv
-
-      - name: Commit if changed
-        run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add traffic/visitors.csv
-          git diff --cached --quiet || { git commit -m "Record visitor counts"; git push; }
+          git commit -m "Record visitor counts"
+          git push
