@@ -2,7 +2,7 @@ name: Record visitor counts
 
 on:
   schedule:
-    - cron: '0 21 * * *'   # daily 06:00 KST
+    - cron: '*/30 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -28,9 +28,15 @@ jobs:
           pubs=$(get "/publications.html" || true)
           projs=$(get "/projects.html" || true)
           mkdir -p traffic
-          [ -f traffic/visitors.csv ] || echo "date,home,publications,projects" > traffic/visitors.csv
-          echo "$(date -u +%F),${home},${pubs},${projs}" >> traffic/visitors.csv
-          cat traffic/visitors.csv
+          [ -f traffic/visitors.csv ] || echo "time_kst,home,publications,projects" > traffic/visitors.csv
+          last=$(tail -n 1 traffic/visitors.csv | cut -d, -f2-)
+          new="${home},${pubs},${projs}"
+          if [ "$new" = "$last" ]; then
+            echo "No change since last record ($new); skipping."
+            exit 0
+          fi
+          echo "$(TZ=Asia/Seoul date +'%F %H:%M'),${new}" >> traffic/visitors.csv
+          tail -n 5 traffic/visitors.csv
 
       - name: Commit if changed
         run: |

@@ -19,7 +19,7 @@ The photo is displayed as a 180×180 circle (`border-radius: 50%` in `stylesheet
 
 Pages load an invisible [GoatCounter](https://www.goatcounter.com/) tracker
 (`jongheean11.goatcounter.com`, no cookies, nothing shown on the site).
-A daily GitHub Action (`.github/workflows/traffic.yml`) fetches the cumulative
-visit counts and appends a row to `traffic/visitors.csv`
-(`date,home,publications,projects`) — check that file (or the GoatCounter
-dashboard) to see traffic over time.
+A GitHub Action (`.github/workflows/traffic.yml`) runs every 30 minutes,
+fetches the cumulative visit counts, and appends a row to `traffic/visitors.csv`
+(`time_kst,home,publications,projects`) whenever the numbers changed — check
+that file (or the GoatCounter dashboard) to see traffic over time.
