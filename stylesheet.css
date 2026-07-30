@@ -364,6 +364,9 @@ footer {
     flex-direction: column-reverse;
     align-items: center;
   }
+  #profile-photo {
+    width: auto;
+  }
   #profile-photo img {
     width: 140px;
     height: 140px;
